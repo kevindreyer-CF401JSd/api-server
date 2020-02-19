@@ -7,5 +7,4 @@ class Authors extends Model {
     }
 }
 
-
 module.exports = Authors;

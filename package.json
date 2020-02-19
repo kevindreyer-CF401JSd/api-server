@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/kevindreyer-CF401JSd/lab-08-mongoDB-server#readme",
   "devDependencies": {
+    "@code-fellows/supergoose": "^1.0.1",
     "jest": "^25.1.0",
     "nodemon": "^2.0.2"
   },
