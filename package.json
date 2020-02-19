@@ -1,0 +1,39 @@
+{
+  "name": "lab-08-mongoDB-server",
+  "version": "1.0.0",
+  "description": "Extension of lab 07 api-server",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest --coverage",
+    "test-watch": "jest --watchAll --coverage",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevindreyer-CF401JSd/lab-08-mongoDB-server.git"
+  },
+  "keywords": [],
+  "author": "Kevin Dreyer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevindreyer-CF401JSd/lab-08-mongoDB-server/issues"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "homepage": "https://github.com/kevindreyer-CF401JSd/lab-08-mongoDB-server#readme",
+  "devDependencies": {
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.1",
+    "morgan": "^1.9.1"
+  }
+}
