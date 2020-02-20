@@ -1,18 +1,18 @@
 const express = require('express');
-const Authors = require('../models/authors.js');
-const authors = new Authors();
+const Categories = require('../models/categories.js');
+const categories = new Categories();
 
 const router = express.Router();
 
-router.get('/authors', getAllAuthors);
-router.get('/authors/:id', getOneAuthor);
-router.post('/authors', postAuthor);
-router.update('/authors/:id', editAuthor);
-router.delete('/authors/:id', deleteAuthor);
+router.get('/categories', getAllCategories);
+router.get('/categories/:id', getOneCategories);
+router.post('/categories', postCategories);
+router.update('/categories/:id', editCategories);
+router.delete('/categories/:id', deleteCategories);
 
 //get read
-function getAllAuthors (req, res, next) {
-    authors.read()
+function getAllCategories (req, res, next) {
+    categories.read()
         .then(result => {
             const output = {
                 count: result.length,
@@ -23,8 +23,8 @@ function getAllAuthors (req, res, next) {
         .catch(next);
 }
 
-function getOneAuthor (req, res, next) {
-    authors.read()
+function getOneCategories (req, res, next) {
+    categories.read()
         .then(result => {
             res.status(200).json(result);
         })
@@ -32,8 +32,8 @@ function getOneAuthor (req, res, next) {
 }
 
 //post create
-function postAuthor (req, res, next) {
-    authors.create(req.body)
+function postCategories (req, res, next) {
+    categories.create(req.body)
         .then(result => {
             res.status(201).json(result);
         })
@@ -41,8 +41,8 @@ function postAuthor (req, res, next) {
 }
 
 //edit update
-function editAuthor (req, res, next) {
-    authors.update(req.params.id, req.body)
+function editCategories (req, res, next) {
+    categories.update(req.params.id, req.body)
         .then(result => {
             res.status(200).json(result)
         })
@@ -50,8 +50,8 @@ function editAuthor (req, res, next) {
 }
 
 //delete
-function deleteAuthor (req, res, next) {
-    authors.delete(req.params.id)
+function deleteCategories (req, res, next) {
+    categories.delete(req.params.id)
         .then(result => {
             res.status(202).json(result)
         })
