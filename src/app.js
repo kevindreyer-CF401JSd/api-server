@@ -1,25 +1,31 @@
 // resources
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 
 // app-level middleware --------------
 const app = express();
-// logger
 app.use(morgan('dev'));
-// parser
 app.use(express.json());
+app.use(cors())
 
 // Routes
 const authorsRouter = require('./api/authorsrouter.js')
 app.use(authorsRouter);
+// categories
 
-app.get('/this_will_error', (req, res) => {
+app.get('t', (req, res) => {
+    throw new Error('505 error');
+})
+
+app.get('/this_route_will_error', (req, res) => {
     throw new Error('Yo this is an error');
 })
 
-// Catch-alls
-const notFoundHandler = require('./middlewares/errorStats.js')
+// Error Catch-alls
+const {notFoundHandler, internalServerErrorHandler} = require('./middlewares/errorStats.js')
 app.use(notFoundHandler)
+app.use(internalServerErrorHandler)
 
 let isRunning = false;
 
