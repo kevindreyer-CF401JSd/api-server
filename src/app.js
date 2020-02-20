@@ -13,9 +13,13 @@ app.use(express.json());
 const authorsRouter = require('./api/authorsrouter.js')
 app.use(authorsRouter);
 
+app.get('/this_will_error', (req, res) => {
+    throw new Error('Yo this is an error');
+})
+
 // Catch-alls
-
-
+const notFoundHandler = require('./middlewares/errorStats.js')
+app.use(notFoundHandler)
 
 let isRunning = false;
 

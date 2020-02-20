@@ -18,7 +18,7 @@ class Model {
 
     //Update
     update (id, record) {
-        return this.schema.findByIdAndUpdate(id, record);
+        return this.schema.findByIdAndUpdate(id, record, { new: true });
     }
 
     //Delete
