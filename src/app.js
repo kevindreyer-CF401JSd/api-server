@@ -12,7 +12,8 @@ app.use(cors())
 // Routes
 const authorsRouter = require('./api/authorsrouter.js')
 app.use(authorsRouter);
-// categories
+const categoriesRouter = require('./api/categoriesrouter.js')
+app.use(categoriesRouter);
 
 app.get('t', (req, res) => {
     throw new Error('500 error');
@@ -24,8 +25,8 @@ app.get('/this_route_will_error', (req, res) => {
 
 // Error Catch-alls
 const {notFoundHandler, internalServerErrorHandler} = require('./middlewares/errorHandlers.js')
-app.use(notFoundHandler)
-app.use(internalServerErrorHandler)
+app.use(notFoundHandler);
+app.use(internalServerErrorHandler);
 
 let isRunning = false;
 
