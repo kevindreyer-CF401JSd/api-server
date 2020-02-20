@@ -1,6 +1,21 @@
 # lab-08-mongoDB-server
-Extension of lab 07 api-server
 
+
+## simple api
+- [x] Express Server Connected to MongoDB
+- [x] Morgan Logger
+- [x] Error Handling
+- [x] 2 mongo connected Data Models: authors and categories
+- [x] Full set of CRUD routes
+- [ ] Tests with supergoose
+    - [x] get
+    - [x] post
+    - [ ] put
+    - [ ] delete
+
+### Author: Kevin Dreyer
+
+### Links and Resources
 
 ## Test routes
 
