@@ -10,6 +10,8 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 // Routes
+const authorsRouter = require('./api/authorsrouter.js')
+app.use(authorsRouter);
 
 // Catch-alls
 
@@ -25,8 +27,7 @@ module.exports = {
             app.listen(port);
             console.log(``)
         } else {
-            console.error('Server is already running!');
+            console.error('Server is already running!')
         }
-        app.listen(port)
     }
 }
