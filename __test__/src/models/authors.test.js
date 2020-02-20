@@ -49,7 +49,7 @@ describe('Authors model', () => {
     it('can read() a single authors from create test', () => {
         return authors.read(testID1)
             .then(record => {
-                expect(record[0].name).toEqual(testObj1.name);
+                expect(record[0].name).toBe(testObj1.name);
             })
             .catch(err => console.error('ERROR:', err))
     })
@@ -60,11 +60,11 @@ describe('Authors model', () => {
     //         })
     //         .catch(err => console.error('ERROR:', err))
     // })
-    // it('can delete() an author', () => {
-    //     return authors.update(testID,)
-    //         .then(record => {
-    //             expect(typeof record).toBe('object');
-    //         })
-    //         .catch(err => console.error('ERROR:', err))
-    // })
+    it('can delete() an author', () => {
+        return authors.delete(testID2)
+            .then(record => {
+                expect(record._id).toEqual(testID2);
+            })
+            .catch(err => console.error('ERROR:', err))
+    })
 })
