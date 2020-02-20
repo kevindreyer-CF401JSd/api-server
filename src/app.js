@@ -15,7 +15,7 @@ app.use(authorsRouter);
 // categories
 
 app.get('t', (req, res) => {
-    throw new Error('505 error');
+    throw new Error('500 error');
 })
 
 app.get('/this_route_will_error', (req, res) => {
@@ -23,7 +23,7 @@ app.get('/this_route_will_error', (req, res) => {
 })
 
 // Error Catch-alls
-const {notFoundHandler, internalServerErrorHandler} = require('./middlewares/errorStats.js')
+const {notFoundHandler, internalServerErrorHandler} = require('./middlewares/errorHandlers.js')
 app.use(notFoundHandler)
 app.use(internalServerErrorHandler)
 
