@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/categories', getAllCategories);
 router.get('/categories/:id', getOneCategories);
 router.post('/categories', postCategories);
-router.update('/categories/:id', editCategories);
+router.put('/categories/:id', editCategories);
 router.delete('/categories/:id', deleteCategories);
 
 //get read

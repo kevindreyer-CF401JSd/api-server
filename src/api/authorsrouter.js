@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/authors', getAllAuthors);
 router.get('/authors/:id', getOneAuthor);
 router.post('/authors', postAuthor);
-router.update('/authors/:id', editAuthor);
+router.put('/authors/:id', editAuthor);
 router.delete('/authors/:id', deleteAuthor);
 
 //get read
