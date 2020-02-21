@@ -24,7 +24,7 @@ function getAllAuthors (req, res, next) {
 }
 
 function getOneAuthor (req, res, next) {
-    authors.read()
+    authors.read(req.params.id)
         .then(result => {
             res.status(200).json(result);
         })

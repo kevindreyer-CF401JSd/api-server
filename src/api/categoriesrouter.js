@@ -24,7 +24,7 @@ function getAllCategories (req, res, next) {
 }
 
 function getOneCategories (req, res, next) {
-    categories.read()
+    categories.read(req.params.id)
         .then(result => {
             res.status(200).json(result);
         })

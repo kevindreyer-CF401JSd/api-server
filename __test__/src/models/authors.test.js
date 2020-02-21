@@ -49,7 +49,11 @@ describe('Authors model', () => {
     it('can read() a single authors from create test', () => {
         return authors.read(testID1)
             .then(record => {
-                expect(record[0].name).toBe(testObj1.name);
+                Object.keys(testObj1).forEach(key => {
+                    console.log('record[key]',record[key])
+                    console.log('testObj1[key]',testObj1[key])
+                    expect(record[key]).toEqual(testObj1[key]);
+                })
             })
             .catch(err => console.error('ERROR:', err))
     })
