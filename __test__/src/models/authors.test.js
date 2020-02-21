@@ -31,6 +31,7 @@ describe('Authors model', () => {
         return authors.create(testObj2)
             .then(record => {
                 Object.keys(testObj2).forEach(key => {
+                    // console.log('record[key] create',record[key]);
                     expect(record[key]).toEqual(testObj2[key]);
                 })
                 testID2 = record._id;
@@ -42,7 +43,6 @@ describe('Authors model', () => {
         return authors.read()
             .then(record => {
                 expect(typeof record).toBe('object');
-                // console.log('record',record);
             })
             .catch(err => console.error('ERROR:', err))
     })
@@ -50,9 +50,7 @@ describe('Authors model', () => {
         return authors.read(testID1)
             .then(record => {
                 Object.keys(testObj1).forEach(key => {
-                    console.log('record[key]',record[key])
-                    console.log('testObj1[key]',testObj1[key])
-                    expect(record[key]).toEqual(testObj1[key]);
+                    expect(record[0][key]).toEqual(testObj1[key]);
                 })
             })
             .catch(err => console.error('ERROR:', err))
@@ -64,7 +62,9 @@ describe('Authors model', () => {
         }
         return authors.update(testID2,updateRecord)
             .then(record => {
-                expect(record.name).toEqual(updateRecord.name);
+                Object.keys(updateRecord).forEach(key => {
+                    expect(record[key]).toEqual(updateRecord[key]);
+                })
             })
             .catch(err => console.error('ERROR:', err))
     })
