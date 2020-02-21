@@ -60,7 +60,7 @@ describe('Authors model', () => {
         }
         return authors.update(testID2,updateRecord)
             .then(record => {
-                expect(typeof record).toBe('object');
+                expect(record.name).toEqual(updateRecord.name);
             })
             .catch(err => console.error('ERROR:', err))
     })
