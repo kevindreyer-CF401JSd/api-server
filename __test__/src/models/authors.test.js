@@ -53,13 +53,17 @@ describe('Authors model', () => {
             })
             .catch(err => console.error('ERROR:', err))
     })
-    // it('can update() an author', () => {
-    //     return authors.update(testID,)
-    //         .then(record => {
-    //             expect(typeof record).toBe('object');
-    //         })
-    //         .catch(err => console.error('ERROR:', err))
-    // })
+    it('can update() an author', () => {
+        updateRecord = {
+            name: 'JK Rowling',
+            handle: 'JKroll'
+        }
+        return authors.update(testID2,updateRecord)
+            .then(record => {
+                expect(typeof record).toBe('object');
+            })
+            .catch(err => console.error('ERROR:', err))
+    })
     it('can delete() an author', () => {
         return authors.delete(testID2)
             .then(record => {
