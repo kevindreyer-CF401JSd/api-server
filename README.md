@@ -2,16 +2,23 @@
 
 
 ## simple api
+
 - [x] Express Server Connected to MongoDB
 - [x] Morgan Logger
 - [x] Error Handling
+   - [x] 404 error handling
+   - [x] 500 error handling
 - [x] 2 mongo connected Data Models: authors and categories
 - [x] Full set of CRUD routes
-- [ ] Tests with supergoose
+- [x] Modular route and handler functions
+- [x] Common handler function
+- [x] DRY routes
+- [x] Test error handling
+- [x] Tests with supergoose
     - [x] get
     - [x] post
-    - [ ] put
-    - [ ] delete
+    - [x] put
+    - [x] delete
 
 ### Author: Kevin Dreyer
 
