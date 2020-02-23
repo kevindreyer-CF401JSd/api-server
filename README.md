@@ -24,7 +24,11 @@ labs 7 through 10
 
 ### Links and Resources
 - [https://humanwhocodes.com/blog/2009/03/10/the-art-of-throwing-javascript-errors-part-2/](https://humanwhocodes.com/blog/2009/03/10/the-art-of-throwing-javascript-errors-part-2/)
+
 - [//https://dev.to/nedsoft/central-error-handling-in-express-3aej](//https://dev.to/nedsoft/central-error-handling-in-express-3aej)
+- [https://gist.github.com/zcaceres/2854ef613751563a3b506fabce4501fd](https://gist.github.com/zcaceres/2854ef613751563a3b506fabce4501fd)
+- [https://stackoverflow.com/questions/3426979/javascript-checking-if-an-object-has-no-properties-or-if-a-map-associative-arra](https://stackoverflow.com/questions/3426979/javascript-checking-if-an-object-has-no-properties-or-if-a-map-associative-arra)
+- [https://vegibit.com/mongoose-validation-examples/](https://vegibit.com/mongoose-validation-examples/)
 
 
 ## Test routes

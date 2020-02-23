@@ -23,13 +23,23 @@ function handleGetOne (req, res, next) {
         .catch(next)
 }
 
-function handlePost (req, res, next) {
-    req.model.create(req.body)
-        .then(result => {
-            res.status(201).json(result)
-        })
-        .catch(next)
-}
+// function handlePost (req, res, next) {
+//     let passCheck = false;
+//     Object.keys(req.body).forEach(key => {
+//         console.log('req.body key',req.body[key])
+//         passCheck = true;
+//     })
+//     if (passCheck) {
+//         console.log('passCheck',passCheck);
+//     req.model.create(req.body)
+//         .then(result => {
+//             res.status(201).json(result)
+//         })
+//         .catch(next)
+//     } else {
+//         throw new ErrorHandler(400,'this is an error');
+//     }
+// }
 
 function handlePut (req, res, next) {
     req.model.update(req.params.id, req.body)
@@ -50,7 +60,7 @@ function handleDelete (req, res, next) {
 module.exports = {
     handleGetAll: handleGetAll,
     handleGetOne: handleGetOne,
-    handlePost: handlePost,
+    // handlePost: handlePost,
     handlePut: handlePut,
     handleDelete: handleDelete
 }

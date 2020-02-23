@@ -45,7 +45,6 @@ function getModel (req, res, next) {
 //bring modelrouter function in here
 const {handleGetAll, 
        handleGetOne,
-       handlePost,
        handlePut,
        handleDelete} = require('./api/modelrouter')
 
@@ -55,6 +54,28 @@ app.get(`${routeBase}/:model/:id`, handleGetOne);
 app.post(`${routeBase}/:model`, handlePost);
 app.put(`${routeBase}/:model/:id`, handlePut);
 app.delete(`${routeBase}/:model/:id`, handleDelete);
+
+
+function handlePost (req, res, next) {
+    let passCheck = false;
+    Object.keys(req.body).forEach(key => {
+        passCheck = true;
+    })
+    if (passCheck) {
+        try {
+            req.model.create(req.body)
+            .then(result => {
+                res.status(201).json(result)
+            })
+            .catch(next(new ErrorHandler(400,`bad request, probably a validation error`)))
+        } catch (error) {
+            throw new ErrorHandler(400,`bad request, ${error}`);
+        }
+    } else {
+        throw new ErrorHandler(400,'bad request, missing data');
+    }
+}
+
 
 app.get('/error', (req, res) => {
     throw new ErrorHandler(500, 'Internal server error');
