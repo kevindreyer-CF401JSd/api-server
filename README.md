@@ -31,6 +31,7 @@ Full CRUD express server api connecting to MongoDB with mongoose.
 Used this help with error handling
 - [//https://dev.to/nedsoft/central-error-handling-in-express-3aej](//https://dev.to/nedsoft/central-error-handling-in-express-3aej)
 
+Other Resources
 - [https://humanwhocodes.com/blog/2009/03/10/the-art-of-throwing-javascript-errors-part-2/](https://humanwhocodes.com/blog/2009/03/10/the-art-of-throwing-javascript-errors-part-2/)
 - [https://gist.github.com/zcaceres/2854ef613751563a3b506fabce4501fd](https://gist.github.com/zcaceres/2854ef613751563a3b506fabce4501fd)
 - [https://stackoverflow.com/questions/3426979/javascript-checking-if-an-object-has-no-properties-or-if-a-map-associative-arra](https://stackoverflow.com/questions/3426979/javascript-checking-if-an-object-has-no-properties-or-if-a-map-associative-arra)
@@ -38,11 +39,24 @@ Used this help with error handling
 
 
 ## Test routes
+Routes: 
+```
+authors
+    name: { type: String, required: true },
+    handle: { type: String }
+```
 
-http get :3000/api/v1/authors
+```
+categories
+    subject: { type: String },
+    keywords: { type: [String] },
+    description: { type: String }
+```
 
-http post :3000/api/v1/authors name="test author name" handle="TAN"
+`http get :3000/api/v1/authors`
 
-http delete :3000/api/v1/authors/5e4dd109d147d22523bd5661
+`http post :3000/api/v1/authors name="test author name" handle="TAN"`
 
-http put :3000/api/v1/authors/5e4dd028d147d22523bd5660 name="Test Author" handle="TA"
+`http delete :3000/api/v1/authors/5e4dd109d147d22523bd5661`
+
+`http put :3000/api/v1/authors/5e4dd028d147d22523bd5660 name="Test Author" handle="TA"`
