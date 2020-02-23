@@ -1,6 +1,8 @@
 # lab-08-mongoDB-server
 labs 7 through 10
 
+Full CRUD express server api connecting to MongoDB with mongoose.
+
 - [Final PR](https://github.com/kevindreyer-CF401JSd/lab-08-mongoDB-server/pull/3)
 
 ## simple api
