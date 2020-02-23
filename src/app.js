@@ -20,7 +20,7 @@ function getModel (req, res, next) {
     switch (model) {
         case 'authors':
             req.model = authors;
-            console.log('req.model',req.model)
+            // console.log('req.model',req.model)
             next();
             break
         case 'categories':
@@ -28,17 +28,22 @@ function getModel (req, res, next) {
             next();
             break;
         default:
-            throw new Error('Invalid route');
+            console.log(`in default`);   
+            // app.use(internalServerErrorHandler);
+            // req.model = this_route_will_error;
+            // throw notFoundHandler;
+            throw new Error('Invalid model',notFoundHandler);
+            // next();
+            // break;
     }
 }
 
 //bring modelrouter function in here
-const {
-    handleGetAll, 
-    handleGetOne,
-    handlePost,
-    handlePut,
-    handleDelete} = require('./api/modelrouter')
+const {handleGetAll, 
+       handleGetOne,
+       handlePost,
+       handlePut,
+       handleDelete} = require('./api/modelrouter')
 
 // get the route 
 app.param('model', getModel);
@@ -49,19 +54,17 @@ app.post('/:model', handlePost);
 app.put('/:model/:id', handlePut);
 app.delete('/:model/:id', handleDelete);
 
-app.get('t', (req, res) => {
-    throw new Error('500 error');
-})
+
+// // Error Catch-alls
 
 app.get('/this_route_will_error', (req, res) => {
-    throw new Error('Yo this is an error');
+    console.log(`in app.get this route will error`);
+    throw new Error('this is an error 500');
 })
 
-// Error Catch-alls
-const {
-    notFoundHandler, 
-    internalServerErrorHandler} = require('./middlewares/errorHandlers.js')
+const {notFoundHandler} = require('./middlewares/errorHandlers.js')
 app.use(notFoundHandler);
+const {internalServerErrorHandler} = require('./middlewares/errorHandlers.js')
 app.use(internalServerErrorHandler);
 
 let isRunning = false;
@@ -72,7 +75,7 @@ module.exports = {
         if (!isRunning) {
             isRunning = true;
             app.listen(port);
-            console.log(``)
+            console.log(`Listening on port ${port}...`)
         } else {
             console.error('Server is already running!')
         }
