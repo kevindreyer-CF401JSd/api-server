@@ -5,17 +5,15 @@ const mockRequest = supergoose(server);
 describe('API server errors', () => {
     it('responds with 404 on an invalid route', () => {
         return mockRequest
-            .get('/invalid')
+            .get('/api/v1/invalid')
             .then(results => {
-                console.log('results.stat 404:',results.status);
                 expect(results.status).toBe(404);
             })
     })
     it('responds with 500 when an internal server error is raised', () => {
         return mockRequest
-            .get('/testerror')
+            .get('/error')
             .then(results => {
-                console.log('results.stat 500:',results.status);
                 expect(results.status).toBe(500);
             })
     })

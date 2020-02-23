@@ -60,7 +60,7 @@ app.get('/error', (req, res) => {
     throw new ErrorHandler(500, 'Internal server error');
 })
 
-app.get('/*', (req, res) => {
+app.get('*', (req, res) => {
     // console.log('req.params', req)
     throw new ErrorHandler(500, `Invalid, route '${req.params[0]}' does not exist, begin routes with '${routeBase}' `);
 })
