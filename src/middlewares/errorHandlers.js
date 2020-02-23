@@ -1,13 +1,23 @@
-function notFoundHandler (req, res, next) {
-    console.log('in 404 not found');
-    res.status(404).json({ error: 'Resource Not Found' })
-}
-function internalServerErrorHandler (err, req, res, next) {
-    console.log('in 500 internal error');
-    res.status(500).json({ error: err.message })
+//https://dev.to/nedsoft/central-error-handling-in-express-3aej
+
+class ErrorHandler extends Error {
+    constructor(statusCode, message) {
+        super();
+        this.statusCode = statusCode;
+        this.message = message;
+    }
 }
 
+const handleError = (err, res) => {
+    const { statusCode, message } = err;
+    res.status(statusCode).json({
+        status: "error",
+        statusCode,
+        message
+    });
+};
+
 module.exports = {
-    notFoundHandler: notFoundHandler,
-    internalServerErrorHandler: internalServerErrorHandler
+    ErrorHandler,
+    handleError,
 }

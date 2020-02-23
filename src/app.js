@@ -4,11 +4,20 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 // app-level middleware --------------
+const {
+    ErrorHandler,
+    handleError,
+    } = require('./middlewares/errorHandlers.js')
+
 const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors())
 
+const routeBase = '/api/v1';
+
+// get the route 
+app.param('model', getModel);
 // Routes
 const Authors = require('./models/authors');
 const authors = new Authors();
@@ -20,52 +29,67 @@ function getModel (req, res, next) {
     switch (model) {
         case 'authors':
             req.model = authors;
-            // console.log('req.model',req.model)
             next();
             break
         case 'categories':
             req.model = categories;
             next();
             break;
+        case 'testerror':
+            throw new ErrorHandler(500,'this is an error');
         default:
-            console.log(`in default`);   
-            // app.use(internalServerErrorHandler);
-            // req.model = this_route_will_error;
-            // throw notFoundHandler;
-            throw new Error('Invalid model',notFoundHandler);
-            // next();
-            // break;
+            throw new ErrorHandler(404,`Invalid, route '${model}' does not exist`);
     }
 }
 
 //bring modelrouter function in here
 const {handleGetAll, 
        handleGetOne,
-       handlePost,
        handlePut,
        handleDelete} = require('./api/modelrouter')
 
-// get the route 
-app.param('model', getModel);
 // handle the route
-app.get('/:model', handleGetAll);
-app.get('/:model/:id', handleGetOne);
-app.post('/:model', handlePost);
-app.put('/:model/:id', handlePut);
-app.delete('/:model/:id', handleDelete);
+app.get(`${routeBase}/:model`, handleGetAll);
+app.get(`${routeBase}/:model/:id`, handleGetOne);
+app.post(`${routeBase}/:model`, handlePost);
+app.put(`${routeBase}/:model/:id`, handlePut);
+app.delete(`${routeBase}/:model/:id`, handleDelete);
 
 
-// // Error Catch-alls
+function handlePost (req, res, next) {
+    let passCheck = false;
+    Object.keys(req.body).forEach(key => {
+        passCheck = true;
+    })
+    if (passCheck) {
+        try {
+            req.model.create(req.body)
+            .then(result => {
+                res.status(201).json(result)
+            })
+            .catch(next(new ErrorHandler(400,`bad request, probably a validation error`)))
+        } catch (error) {
+            throw new ErrorHandler(400,`bad request, ${error}`);
+        }
+    } else {
+        throw new ErrorHandler(400,'bad request, missing data');
+    }
+}
 
-app.get('/this_route_will_error', (req, res) => {
-    console.log(`in app.get this route will error`);
-    throw new Error('this is an error 500');
+
+app.get('/error', (req, res) => {
+    throw new ErrorHandler(500, 'Internal server error');
 })
 
-const {notFoundHandler} = require('./middlewares/errorHandlers.js')
-app.use(notFoundHandler);
-const {internalServerErrorHandler} = require('./middlewares/errorHandlers.js')
-app.use(internalServerErrorHandler);
+app.get('*', (req, res) => {
+    // console.log('req.params', req)
+    throw new ErrorHandler(500, `Invalid, route '${req.params[0]}' does not exist, begin routes with '${routeBase}' `);
+})
+
+//https://dev.to/nedsoft/central-error-handling-in-express-3aej
+app.use((err, req, res, next) => {
+    handleError(err, res);
+});
 
 let isRunning = false;
 
