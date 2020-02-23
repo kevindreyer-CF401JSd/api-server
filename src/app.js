@@ -4,16 +4,20 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 // app-level middleware --------------
+const {
+    ErrorHandler,
+    handleError,
+    } = require('./middlewares/errorHandlers.js')
+
 const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors())
-
 // Routes
-const Authors = require('./models/authors');
-const authors = new Authors();
-const Categories = require('./models/categories');
-const categories = new Categories();
+// const Authors = require('./models/authors');
+// const authors = new Authors();
+// const Categories = require('./models/categories');
+// const categories = new Categories();
 
 function getModel (req, res, next) {
     const model = req.params.model
@@ -27,14 +31,11 @@ function getModel (req, res, next) {
             req.model = categories;
             next();
             break;
+        case 'testerror':
+            throw new ErrorHandler(500,'this is an error');
         default:
-            console.log(`in default`);   
-            // app.use(internalServerErrorHandler);
-            // req.model = this_route_will_error;
-            // throw notFoundHandler;
-            throw new Error('Invalid model',notFoundHandler);
-            // next();
-            // break;
+            console.log(`in default`,model);
+            throw new ErrorHandler(404,`Invalid, route '${model}' does not exist`);
     }
 }
 
@@ -45,6 +46,7 @@ const {handleGetAll,
        handlePut,
        handleDelete} = require('./api/modelrouter')
 
+
 // get the route 
 app.param('model', getModel);
 // handle the route
@@ -54,18 +56,35 @@ app.post('/:model', handlePost);
 app.put('/:model/:id', handlePut);
 app.delete('/:model/:id', handleDelete);
 
+app.get('/error', (req, res) => {
+    throw new ErrorHandler(500, 'Internal server error');
+})
+
+    // if (error) {
+// const {notFoundHandler} = require('./middlewares/errorHandlers.js')
+// app.use(notFoundHandler);
+
+app.use((err, req, res, next) => {
+    handleError(err, res);
+});
+
+// const {internalServerErrorHandler} = require('./middlewares/errorHandlers.js')
+// app.use(internalServerErrorHandler);
+    // } else {
+
+    // }
+
 
 // // Error Catch-alls
 
-app.get('/this_route_will_error', (req, res) => {
-    console.log(`in app.get this route will error`);
-    throw new Error('this is an error 500');
-})
 
-const {notFoundHandler} = require('./middlewares/errorHandlers.js')
-app.use(notFoundHandler);
-const {internalServerErrorHandler} = require('./middlewares/errorHandlers.js')
-app.use(internalServerErrorHandler);
+
+// const {notFoundHandler} = require('./middlewares/errorHandlers.js')
+// app.use(notFoundHandler);
+// const {internalServerErrorHandler} = require('./middlewares/errorHandlers.js')
+// app.use(internalServerErrorHandler);
+
+
 
 let isRunning = false;
 

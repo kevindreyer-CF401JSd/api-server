@@ -1,5 +1,5 @@
 # lab-08-mongoDB-server
-
+labs 7 through 10
 
 ## simple api
 
@@ -15,14 +15,17 @@
 - [x] DRY routes
 - [x] Test error handling
 - [x] Tests with supergoose
-    - [x] get
-    - [x] post
-    - [x] put
-    - [x] delete
+   - [x] get
+   - [x] post
+   - [x] put
+   - [x] delete
 
 ### Author: Kevin Dreyer
 
 ### Links and Resources
+- [https://humanwhocodes.com/blog/2009/03/10/the-art-of-throwing-javascript-errors-part-2/](https://humanwhocodes.com/blog/2009/03/10/the-art-of-throwing-javascript-errors-part-2/)
+- [//https://dev.to/nedsoft/central-error-handling-in-express-3aej](//https://dev.to/nedsoft/central-error-handling-in-express-3aej)
+
 
 ## Test routes
 
