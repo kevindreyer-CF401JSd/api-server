@@ -26,6 +26,9 @@ Full CRUD express server api connecting to MongoDB with mongoose.
 
 ### Author: Kevin Dreyer
 
+- .env vars
+  - `MONGODB_URI=<path to mongodb>`
+
 ### Links and Resources
 
 Used this help with error handling
