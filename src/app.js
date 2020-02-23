@@ -13,18 +13,20 @@ const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors())
+
+// get the route 
+app.param('model', getModel);
 // Routes
-// const Authors = require('./models/authors');
-// const authors = new Authors();
-// const Categories = require('./models/categories');
-// const categories = new Categories();
+const Authors = require('./models/authors');
+const authors = new Authors();
+const Categories = require('./models/categories');
+const categories = new Categories();
 
 function getModel (req, res, next) {
     const model = req.params.model
     switch (model) {
         case 'authors':
             req.model = authors;
-            // console.log('req.model',req.model)
             next();
             break
         case 'categories':
@@ -34,7 +36,6 @@ function getModel (req, res, next) {
         case 'testerror':
             throw new ErrorHandler(500,'this is an error');
         default:
-            console.log(`in default`,model);
             throw new ErrorHandler(404,`Invalid, route '${model}' does not exist`);
     }
 }
@@ -46,9 +47,6 @@ const {handleGetAll,
        handlePut,
        handleDelete} = require('./api/modelrouter')
 
-
-// get the route 
-app.param('model', getModel);
 // handle the route
 app.get('/:model', handleGetAll);
 app.get('/:model/:id', handleGetOne);
@@ -60,31 +58,9 @@ app.get('/error', (req, res) => {
     throw new ErrorHandler(500, 'Internal server error');
 })
 
-    // if (error) {
-// const {notFoundHandler} = require('./middlewares/errorHandlers.js')
-// app.use(notFoundHandler);
-
 app.use((err, req, res, next) => {
     handleError(err, res);
 });
-
-// const {internalServerErrorHandler} = require('./middlewares/errorHandlers.js')
-// app.use(internalServerErrorHandler);
-    // } else {
-
-    // }
-
-
-// // Error Catch-alls
-
-
-
-// const {notFoundHandler} = require('./middlewares/errorHandlers.js')
-// app.use(notFoundHandler);
-// const {internalServerErrorHandler} = require('./middlewares/errorHandlers.js')
-// app.use(internalServerErrorHandler);
-
-
 
 let isRunning = false;
 

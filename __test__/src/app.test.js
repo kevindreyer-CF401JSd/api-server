@@ -13,7 +13,7 @@ describe('API server errors', () => {
     })
     it('responds with 500 when an internal server error is raised', () => {
         return mockRequest
-            .get('/this_route_will_error')
+            .get('/testerror')
             .then(results => {
                 console.log('results.stat 500:',results.status);
                 expect(results.status).toBe(500);
