@@ -14,6 +14,8 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors())
 
+const routeBase = '/api/v1';
+
 // get the route 
 app.param('model', getModel);
 // Routes
@@ -48,14 +50,19 @@ const {handleGetAll,
        handleDelete} = require('./api/modelrouter')
 
 // handle the route
-app.get('/:model', handleGetAll);
-app.get('/:model/:id', handleGetOne);
-app.post('/:model', handlePost);
-app.put('/:model/:id', handlePut);
-app.delete('/:model/:id', handleDelete);
+app.get(`${routeBase}/:model`, handleGetAll);
+app.get(`${routeBase}/:model/:id`, handleGetOne);
+app.post(`${routeBase}/:model`, handlePost);
+app.put(`${routeBase}/:model/:id`, handlePut);
+app.delete(`${routeBase}/:model/:id`, handleDelete);
 
 app.get('/error', (req, res) => {
     throw new ErrorHandler(500, 'Internal server error');
+})
+
+app.get('/*', (req, res) => {
+    // console.log('req.params', req)
+    throw new ErrorHandler(500, `Invalid, route '${req.params[0]}' does not exist, begin routes with '${routeBase}' `);
 })
 
 app.use((err, req, res, next) => {
