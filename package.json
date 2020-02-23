@@ -1,8 +1,9 @@
 {
-  "name": "lab-08-mongoDB-server",
+  "name": "@kdreyerinseattle/api-server",
   "version": "1.0.0",
-  "description": "Extension of lab 07 api-server",
+  "description": "Full CRUD express server api connecting to MongoDB with mongoose",
   "main": "index.js",
+  "bin": {"api-server": "index.js"},
   "directories": {
     "lib": "lib"
   },

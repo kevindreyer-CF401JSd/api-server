@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // Mongo Connection
 require('dotenv').config();
 const mongoose = require('mongoose');
