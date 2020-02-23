@@ -86,6 +86,7 @@ app.get('*', (req, res) => {
     throw new ErrorHandler(500, `Invalid, route '${req.params[0]}' does not exist, begin routes with '${routeBase}' `);
 })
 
+//https://dev.to/nedsoft/central-error-handling-in-express-3aej
 app.use((err, req, res, next) => {
     handleError(err, res);
 });
