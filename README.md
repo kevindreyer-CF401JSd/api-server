@@ -1,28 +1,8 @@
-# lab-08-mongoDB-server
-labs 7 through 10
+# API Server
 
 Full CRUD express server api connecting to MongoDB with mongoose.
 
-- [Final PR](https://github.com/kevindreyer-CF401JSd/lab-08-mongoDB-server/pull/3)
-
-## simple api
-
-- [x] Express Server Connected to MongoDB
-- [x] Morgan Logger
-- [x] Error Handling
-   - [x] 404 error handling
-   - [x] 500 error handling
-- [x] 2 mongo connected Data Models: authors and categories
-- [x] Full set of CRUD routes
-- [x] Modular route and handler functions
-- [x] Common handler function
-- [x] DRY routes
-- [x] Test error handling
-- [x] Tests with supergoose
-   - [x] get
-   - [x] post
-   - [x] put
-   - [x] delete
+## api
 
 ### Author: Kevin Dreyer
 
@@ -41,7 +21,7 @@ Other Resources
 - [https://vegibit.com/mongoose-validation-examples/](https://vegibit.com/mongoose-validation-examples/)
 
 
-## Test routes
+### Test routes
 Routes: 
 ```
 authors
