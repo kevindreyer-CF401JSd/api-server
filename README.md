@@ -8,6 +8,7 @@ Full CRUD express server api connecting to MongoDB with mongoose.
 
 - .env vars
   - `MONGODB_URI=<path to mongodb>`
+  - `PORT` if local
 
 ### Links and Resources
 
