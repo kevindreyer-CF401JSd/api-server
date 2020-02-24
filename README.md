@@ -16,7 +16,7 @@ Full CRUD express server api connecting to MongoDB with mongoose.
   - [api server authors](https://kdreyer-api-server.herokuapp.com/api/v1/authors)
   - [api server categories](https://kdreyer-api-server.herokuapp.com/api/v1/categories)
 
-Used this help with error handling
+Used this blog to help with error handling coding
 - [//https://dev.to/nedsoft/central-error-handling-in-express-3aej](//https://dev.to/nedsoft/central-error-handling-in-express-3aej)
 
 Other Resources
