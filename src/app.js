@@ -62,15 +62,11 @@ function handlePost (req, res, next) {
         passCheck = true;
     })
     if (passCheck) {
-        try {
             req.model.create(req.body)
             .then(result => {
                 res.status(201).json(result)
             })
-            .catch(next(new ErrorHandler(400,`bad request, probably a validation error`)))
-        } catch (error) {
-            throw new ErrorHandler(400,`bad request, ${error}`);
-        }
+            .catch(new ErrorHandler(400,`bad request, possiblly a validation error`))
     } else {
         throw new ErrorHandler(400,'bad request, missing data');
     }
